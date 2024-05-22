@@ -5,6 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
+    <data>
+        <variable
+            name="myviewmodel"
+            type="com.example.viewmodelapp.MyViewModel" />
+    </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -25,8 +30,8 @@
 
     <TextView
         android:id="@+id/result"
-        android:layout_width="22dp"
-        android:layout_height="131dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
         android:text="0"
         android:textSize="24sp"
@@ -36,6 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
+        android:onClick="@{myviewmodel::increasedCounter}"
         android:id="@+id/counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -2,6 +2,7 @@ package com.example.viewmodelapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -22,13 +23,13 @@ public class MainActivity extends AppCompatActivity {
 
         activityMainBinding= DataBindingUtil.setContentView(this,R.layout.activity_main);
         myViewModel=new ViewModelProvider(this).get(MyViewModel.class);
-        activityMainBinding.counter.setOnClickListener(new View.OnClickListener() {
+       activityMainBinding.setMyviewmodel(myViewModel);
+        myViewModel.getCounter().observe(this, new Observer<Integer>() {
             @Override
-            public void onClick(View v) {
-                myViewModel.increasedCounter();
-               activityMainBinding.result.setText(myViewModel.getCounter()+"");
+            public void onChanged(Integer counter) {
+                activityMainBinding.result.setText(""+counter);
+
             }
         });
-        activityMainBinding.result.setText(myViewModel.getCounter()+"");
     }
 }
